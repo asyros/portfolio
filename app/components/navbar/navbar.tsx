@@ -3,11 +3,11 @@ import { NAVBAR_LINKS } from "@/app/constants/constants";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-6">
+    <nav className="flex justify-between bg-gray-800 p-4 w-full">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <img src="../../icon.png" alt="icon" className="w-10 h-10 mr-3" />
       </div>
-      <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div className="w-full block lg:flex lg:items-center lg:w-auto">
         <div className="text-sm lg:flex-grow">
           {NAVBAR_LINKS.map(
             (link: { href: string; label: string }, index: number) => (
@@ -25,10 +25,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
-// const NAVBAR_LINKS = [
-//   { label: "Home", href: "/" },
-//   { label: "About", href: "/about" },
-//   { label: "Projects", href: "/projects" },
-//   { label: "Contact", href: "/contact" },
-// ];
