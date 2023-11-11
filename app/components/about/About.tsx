@@ -1,4 +1,3 @@
-import Navbar from "../../components/navbar/navbar";
 import { data } from "./data";
 
 export default function About() {
@@ -20,5 +19,7 @@ export default function About() {
         </div>
       </div>
     );
-  } else return null;
+  }
+
+  return null;
 }
