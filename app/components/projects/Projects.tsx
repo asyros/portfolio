@@ -1,17 +1,7 @@
-type ProjectData = {
-  heading: string;
-  projects: Array<ProjectSectionData>;
-};
+import { data } from './data'
 
-type ProjectSectionData = {
-  id: number;
-  poster: string;
-  downloadUrl: string;
-  name: string;
-};
-
-export default function Projects(data: ProjectData) {
-  const { heading, projects } = data;
+const Projects = () => {
+  const { heading, projects } = data
 
   if (data) {
     return (
@@ -27,26 +17,26 @@ export default function Projects(data: ProjectData) {
               </p>
             )}
             {projects?.length &&
-              projects.map(
-                ({ id, poster, downloadUrl, name }: ProjectSectionData) => (
-                  <div key={id}>
-                    {poster && <img src={poster} href={downloadUrl} />}
-                    {name && (
-                      <p
-                        className="font-serif text-md mb-3"
-                        data-test-id={`projects.${name}`}
-                      >
-                        {name}
-                      </p>
-                    )}
-                  </div>
-                )
-              )}
+              projects.map(({ id, poster, downloadUrl, name }) => (
+                <div key={id}>
+                  {poster && <img src={poster} />}
+                  {name && (
+                    <p
+                      className="font-serif text-md mb-3"
+                      data-test-id={`projects.${name}`}
+                    >
+                      {name}
+                    </p>
+                  )}
+                </div>
+              ))}
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  return null;
+  return null
 }
+
+export { Projects }

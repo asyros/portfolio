@@ -1,10 +1,7 @@
-type AboutData = {
-  heading: string;
-  content: Array<string>;
-};
+import { data } from './data'
 
-export default function About(data: AboutData) {
-  const { heading, content } = data;
+const About = () => {
+  const { heading, content } = data
 
   if (data) {
     return (
@@ -21,8 +18,10 @@ export default function About(data: AboutData) {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
-  return null;
+  return null
 }
+
+export { About }

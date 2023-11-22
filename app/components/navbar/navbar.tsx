@@ -1,13 +1,10 @@
-import Link from "next/link";
+import Link from 'next/link'
+import { data } from './data'
 
-type NavbarLink = {
-  href?: string;
-  label?: string;
-  id: number;
-};
+const Navbar = () => {
+  const { navbars } = data
 
-export default function Navbar(links: Array<NavbarLink>) {
-  if (links?.length) {
+  if (navbars?.length) {
     return (
       <nav
         className="flex justify-between bg-gray-800 p-4 w-full"
@@ -18,9 +15,9 @@ export default function Navbar(links: Array<NavbarLink>) {
         </div>
         <div className="w-full block lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow">
-            {links.map(({ href, label, id }: NavbarLink) => (
+            {navbars.map(({ href, label, id }) => (
               <Link
-                data-test-id={label + "." + id}
+                data-test-id={label + '.' + id}
                 href={href}
                 key={id}
                 className="block mt-4 lg:inline-block lg:mt-0 text-gray-200 hover:text-white mr-4"
@@ -31,8 +28,10 @@ export default function Navbar(links: Array<NavbarLink>) {
           </div>
         </div>
       </nav>
-    );
+    )
   }
 
-  return null;
+  return null
 }
+
+export { Navbar }

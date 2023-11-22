@@ -1,33 +1,21 @@
-import React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+'use client'
+import React from 'react'
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import Typography from '@mui/material/Typography'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { data } from './data'
 
-type ExperienceData = {
-  heading: string;
-  sections: Array<ExperienceSectionData>
-};
+const Experience = () => {
+  const [expanded, setExpanded] = React.useState<string | false>(false)
 
-type ExperienceSectionData = {
-  fromDate: Date;
-  toDate: Date;
-  currentlyWorking: boolean;
-  description: string;
-  company: string;
-  key: number;
-};
-
-export default function Experience(data: ExperienceData) {
-  const [expanded, setExpanded] = React.useState<string | false>(false);
-
-  const { heading, sections } = data;
+  const { heading, sections } = data
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
+      setExpanded(isExpanded ? panel : false)
+    }
 
   return (
     <div id="experience">
@@ -44,34 +32,46 @@ export default function Experience(data: ExperienceData) {
                 description,
                 company,
                 key,
-              }: ExperienceSectionData) => {
-                let panelId = "panel" + key;
+              }) => {
+                let panelId = 'panel' + key
+                const fromDateText =
+                  fromDate.toDateString() + '-' + currentlyWorking
+                    ? 'Present'
+                    : toDate.toDateString()
+
                 return (
                   <Accordion
                     expanded={expanded === panelId}
                     onChange={handleChange(panelId)}
+                    key={key}
                   >
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls={`${panelId}bh-content`}
                       id={`${panelId}bh-header`}
                     >
-                      {company && <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                        {company}
-                      </Typography>}
-                      {fromDate && <Typography sx={{ color: "text.secondary" }}>
-                        {fromDate} - {currentlyWorking ? "Present" : toDate}
-                      </Typography>
+                      {company && (
+                        <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                          {company}
+                        </Typography>
+                      )}
+                      {fromDate && (
+                        <Typography sx={{ color: 'text.secondary' }}>
+                          {fromDateText}
+                        </Typography>
+                      )}
                     </AccordionSummary>
                     <AccordionDetails>
                       {description && <Typography>{description}</Typography>}
                     </AccordionDetails>
                   </Accordion>
-                );
+                )
               }
             )}
         </div>
       </div>
     </div>
-  );
+  )
 }
+
+export { Experience }

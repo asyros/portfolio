@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/components/about/index.js",
-    "app/components/navbar/navbar.spec.js"
+    "app/components/navbar/navbar.spec.js",
+    "app/components/index.js"
   ],
   "exclude": ["node_modules"]
 }
